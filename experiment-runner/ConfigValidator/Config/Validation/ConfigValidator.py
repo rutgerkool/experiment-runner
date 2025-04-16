@@ -80,9 +80,9 @@ class ConfigValidator:
         if not hasattr(config, "self_measure"):
             config.self_measure = False
 
-        if config.self_measure:
+        if hasattr(config, "self_measure") and config.self_measure:
             if not hasattr(config, "self_measure_bin"):
-                config.self_measure_bin = "/usr/local/bin/energibridge" # This is spesific to linux, might work for osx as well
+                config.self_measure_bin = "/usr/local/bin/energibridge" # This is specific to linux, might work for osx as well
             
             if not hasattr(config, "self_measure_logfile"):
                 config.self_measure_logfile = None
@@ -112,10 +112,10 @@ class ConfigValidator:
                             (lambda a, b: is_path_exists_or_creatable_portable(a))
                         )
         
-        ConfigValidator.__validate_energibridge(config.self_measure, 
-                                                config.self_measure_bin, 
-                                                config.self_measure_logfile
-                        )
+        if hasattr(config, "self_measure") and config.self_measure:
+            ConfigValidator.__validate_energibridge(config.self_measure, 
+                                                    config.self_measure_bin, 
+                                                    config.self_measure_logfile)
 
         # Display config in user-friendly manner, including potential errors found
         print(
