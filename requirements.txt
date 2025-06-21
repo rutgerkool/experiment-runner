@@ -3,3 +3,5 @@ psutil
 tabulate
 dill
 jsonpickle
+paramiko
+dotenv

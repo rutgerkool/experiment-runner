@@ -19,3 +19,4 @@ Session.vim
 
 Vagrantfile
 venv
+.env
